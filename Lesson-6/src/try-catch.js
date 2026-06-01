@@ -12,19 +12,15 @@ export async function getDataWithFallback() {
     } catch (firstError) {
         console.error('First request failed:', firstError.message);
 
-        try {
-            const backupResponse = await fetch('https://jsonplaceholder.typicode.com/users/1');
+        const backupResponse = await fetch('https://jsonplaceholder.typicode.com/users/1');
 
-            if (!backupResponse.ok) {
-                throw new Error('Backup service returned invalid response', { cause: firstError });
-            }
-
-            const backupData = await backupResponse.json();
-
-            console.log('Data from backup service:');
-            console.log(backupData);
-        } catch (secondError) {
-            throw new Error(`Custom error: backup request also failed. Reason: ${secondError.message}`, { cause: secondError });
+        if (!backupResponse.ok) {
+            throw new Error('Backup service returned invalid response', { cause: firstError });
         }
+
+        const backupData = await backupResponse.json();
+
+        console.log('Data from backup service:');
+        console.log(backupData);
     }
 }
