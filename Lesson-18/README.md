@@ -1,30 +1,30 @@
-# Playwright як E2E Web UI фреймворк - Lesson 18
+# Playwright as an E2E Web UI Framework - Lesson 18
 
-Цей проєкт демонструє Playwright Test як інструмент для E2E UI-тестування: Page Object Model для реальної сторінки в інтернеті та кілька тестів, побудованих поверх нього.
+This project demonstrates Playwright Test as an E2E UI testing tool: a Page Object Model for a real page on the internet, plus a few tests built on top of it.
 
-## Домашнє завдання
+## Homework
 
-1. Ознайомитися з документацією Playwright: https://playwright.dev/docs/intro
-2. Створити Playwright Test проєкт, описати обрану сторінку в Page Object Model, написати кілька тестів.
-3. Ознайомитися з документацією роботи з Shadow DOM та iFrame:
-   - Shadow DOM (Playwright-локатори "пронизують" Shadow DOM автоматично): https://playwright.dev/docs/locators#locate-in-shadow-dom
+1. Get familiar with the Playwright documentation: https://playwright.dev/docs/intro
+2. Create a Playwright Test project, describe the chosen page as a Page Object Model, write a few tests.
+3. Get familiar with the documentation on working with Shadow DOM and iFrame:
+   - Shadow DOM (Playwright locators pierce Shadow DOM automatically): https://playwright.dev/docs/locators#locate-in-shadow-dom
    - iFrame (`FrameLocator`, `page.frameLocator()`): https://playwright.dev/docs/frames
 
-## Обрана сторінка
+## Chosen Page
 
-[automationexercise.com/products](https://automationexercise.com/products) - публічний сайт, спеціально створений для практики автоматизації тестування (без анти-бот захисту, стабільна розмітка).
+[automationexercise.com/products](https://automationexercise.com/products) - a public site built specifically for test automation practice (no bot protection, stable markup).
 
-## Що реалізовано
+## What's Implemented
 
-- `src/pages/products.page.ts` - Page Object Model сторінки каталогу товарів: пошук, картки товарів, фільтр за категорією, додавання в кошик.
-- `src/fixtures/pages.fixture.ts` - Playwright fixture, що надає готовий екземпляр `ProductsPage` у кожному тесті (`test.extend`).
-- `tests/products.spec.ts` - 4 тести:
-  1. на сторінці відображається декілька товарів;
-  2. пошук повертає відповідні результати;
-  3. фільтр за категорією (Women > Dress) показує правильні товари;
-  4. товар можна додати в кошик, і він з'являється в кошику.
+- `src/pages/products.page.ts` - Page Object Model for the product catalog page: search, product cards, category filter, add to cart.
+- `src/fixtures/pages.fixture.ts` - a Playwright fixture that provides a ready `ProductsPage` instance in every test (`test.extend`).
+- `tests/products.spec.ts` - 4 tests:
+  1. multiple products are displayed on the page;
+  2. search returns matching results;
+  3. category filter (Women > Dress) shows the correct products;
+  4. a product can be added to the cart and shows up in the cart.
 
-## Структура
+## Structure
 
 ```text
 src/
@@ -32,41 +32,41 @@ src/
     products.page.ts   # Page Object Model
     index.ts
   fixtures/
-    pages.fixture.ts    # test.extend з productsPage
+    pages.fixture.ts    # test.extend with productsPage
     index.ts
 tests/
   products.spec.ts
 playwright.config.ts
 ```
 
-## Команди
+## Commands
 
-Встановлення залежностей:
+Install dependencies:
 
 ```bash
 npm install
 npx playwright install chromium
 ```
 
-Запуск тестів:
+Run tests:
 
 ```bash
 npm test
 ```
 
-Запуск з видимим браузером:
+Run with a visible browser:
 
 ```bash
 npm run test:headed
 ```
 
-HTML-звіт:
+HTML report:
 
 ```bash
 npm run test:report
 ```
 
-Компіляція TypeScript + перевірка ESLint:
+Compile TypeScript + run ESLint:
 
 ```bash
 npm run run
