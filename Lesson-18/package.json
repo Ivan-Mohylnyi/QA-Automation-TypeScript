@@ -1,0 +1,29 @@
+{
+  "name": "lesson-18",
+  "version": "1.0.0",
+  "description": "Playwright as an E2E Web UI framework: Page Object Model for a real page + a few tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:report": "npx playwright show-report",
+    "test:report:open": "npx playwright show-report --open",
+    "run": "tsc --build && eslint ./src ./tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.61.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^26.1.0",
+    "eslint": "^10.6.0",
+    "eslint-plugin-unicorn": "^69.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.0"
+  }
+}
