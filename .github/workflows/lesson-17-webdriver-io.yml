@@ -1,0 +1,37 @@
+name: Lesson 17 - WebdriverIO CI
+
+on:
+  push:
+    branches: [Lesson-17]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: Lesson-17/webdriver-io
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run WebdriverIO tests
+        run: npm test
+
+      - name: Upload WebdriverIO logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wdio-logs
+          path: Lesson-17/webdriver-io/logs/
+          retention-days: 14
+          if-no-files-found: ignore
