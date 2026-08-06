@@ -1,0 +1,24 @@
+{
+  "name": "lesson-15",
+  "version": "1.0.0",
+  "description": "UI testing basics: CSS and XPath selector practice via Page Objects",
+  "main": "index.js",
+  "scripts": {
+    "run": "tsc --build && eslint ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.61.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^26.1.0",
+    "eslint": "^10.6.0",
+    "eslint-plugin-unicorn": "^69.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.0"
+  }
+}
