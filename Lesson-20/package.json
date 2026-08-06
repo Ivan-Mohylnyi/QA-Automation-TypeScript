@@ -1,0 +1,32 @@
+{
+  "name": "lesson-20",
+  "version": "1.0.0",
+  "description": "BDD: Gherkin + Cucumber.js with Playwright as the UI-testing tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js --config cucumber.cjs --profile local",
+    "debug": "cucumber-js --config cucumber.cjs --profile local --tags @debug",
+    "run": "tsc --build && eslint ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@cucumber/cucumber": "^13.2.1",
+    "@cucumber/pretty-formatter": "^4.0.1",
+    "chai": "^6.2.2",
+    "playwright": "^1.62.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/chai": "^5.2.3",
+    "@types/node": "^26.1.0",
+    "eslint": "^10.6.0",
+    "eslint-plugin-unicorn": "^69.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.0"
+  }
+}
