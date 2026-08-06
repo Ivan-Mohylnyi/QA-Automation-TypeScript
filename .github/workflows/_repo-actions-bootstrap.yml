@@ -1,0 +1,19 @@
+name: Repo Actions Bootstrap
+
+# GitHub only starts recognizing/triggering Actions for a repository once a workflow
+# file exists on the default branch at least once. Every actual test pipeline
+# (Lesson-17/18/19/20/21) lives on its own homework branch, none of which are merged
+# into main, so without this file Actions had never been "switched on" for the repo
+# and none of those pipelines could trigger even though they are all valid.
+# This file touches no lesson content - it only exists to activate Actions repo-wide.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Actions are active for this repository."
