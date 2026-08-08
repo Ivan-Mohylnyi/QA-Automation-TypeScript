@@ -1,0 +1,341 @@
+{
+  "info": {
+    "_postman_id": "5412fbfe-34e8-4f5f-b664-340899c5383e",
+    "name": "official_joke_api (local)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "random joke",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response is a single joke object with the expected fields\", function () {",
+              "    const joke = pm.response.json();",
+              "    pm.expect(joke).to.be.an('object');",
+              "    pm.expect(joke).to.have.property('id').that.is.a('number');",
+              "    pm.expect(joke).to.have.property('type').that.is.a('string');",
+              "    pm.expect(joke).to.have.property('setup').that.is.a('string');",
+              "    pm.expect(joke).to.have.property('punchline').that.is.a('string');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/random_joke",
+          "host": ["{{base_url}}"],
+          "path": ["random_joke"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "jokes random (alias)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"/jokes/random is an alias of /random_joke and returns the same shape\", function () {",
+              "    const joke = pm.response.json();",
+              "    pm.expect(joke).to.be.an('object');",
+              "    pm.expect(joke).to.have.property('id').that.is.a('number');",
+              "    pm.expect(joke).to.have.property('type').that.is.a('string');",
+              "    pm.expect(joke).to.have.property('setup').that.is.a('string');",
+              "    pm.expect(joke).to.have.property('punchline').that.is.a('string');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/jokes/random",
+          "host": ["{{base_url}}"],
+          "path": ["jokes", "random"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "random ten",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response is an array of exactly 10 jokes\", function () {",
+              "    const jokes = pm.response.json();",
+              "    pm.expect(jokes).to.be.an('array').with.lengthOf(10);",
+              "    jokes.forEach((joke) => {",
+              "        pm.expect(joke).to.have.property('id');",
+              "        pm.expect(joke).to.have.property('setup');",
+              "        pm.expect(joke).to.have.property('punchline');",
+              "    });",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/random_ten",
+          "host": ["{{base_url}}"],
+          "path": ["random_ten"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "jokes ten (alias)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"/jokes/ten is an alias of /random_ten and returns 10 jokes\", function () {",
+              "    const jokes = pm.response.json();",
+              "    pm.expect(jokes).to.be.an('array').with.lengthOf(10);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/jokes/ten",
+          "host": ["{{base_url}}"],
+          "path": ["jokes", "ten"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "jokes random N (5)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response is an array of exactly 5 jokes\", function () {",
+              "    const jokes = pm.response.json();",
+              "    pm.expect(jokes).to.be.an('array').with.lengthOf(5);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/jokes/random/5",
+          "host": ["{{base_url}}"],
+          "path": ["jokes", "random", "5"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "jokes random N exceeds total count",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Requesting more jokes than exist returns a graceful text message, not a JSON array\", function () {",
+              "    const body = pm.response.text();",
+              "    pm.expect(body).to.include('exceeds the number of jokes');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/jokes/random/99999",
+          "host": ["{{base_url}}"],
+          "path": ["jokes", "random", "99999"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "joke types",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response lists the known joke types\", function () {",
+              "    const types = pm.response.json();",
+              "    pm.expect(types).to.be.an('array');",
+              "    pm.expect(types).to.include.members(['general', 'programming', 'knock-knock', 'dad']);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/types",
+          "host": ["{{base_url}}"],
+          "path": ["types"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "jokes by type (programming) random",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response is a one-item array and the joke's type matches the requested type\", function () {",
+              "    const jokes = pm.response.json();",
+              "    pm.expect(jokes).to.be.an('array').with.lengthOf(1);",
+              "    pm.expect(jokes[0].type).to.equal('programming');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/jokes/programming/random",
+          "host": ["{{base_url}}"],
+          "path": ["jokes", "programming", "random"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "joke by id (1)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Joke with id 1 is returned\", function () {",
+              "    const joke = pm.response.json();",
+              "    pm.expect(joke.id).to.equal(1);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/jokes/1",
+          "host": ["{{base_url}}"],
+          "path": ["jokes", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "joke by id not found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 404 for a non-existent joke id\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Error body has the expected shape\", function () {",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.type).to.equal('error');",
+              "    pm.expect(body.message).to.equal('joke not found');",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/jokes/999999",
+          "host": ["{{base_url}}"],
+          "path": ["jokes", "999999"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3005"
+    }
+  ]
+}
