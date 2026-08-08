@@ -1,0 +1,31 @@
+{
+  "name": "lesson-10-vitest",
+  "version": "1.0.0",
+  "description": "Unit tests for the notification-dispatch functions, using Vitest + Chai",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "run": "tsc --build && eslint ./src ./tests"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@stylistic/eslint-plugin-ts": "^4.4.1",
+    "@types/chai": "^5.2.3",
+    "@types/node": "^25.9.1",
+    "chai": "^6.2.2",
+    "eslint": "^10.4.1",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-unicorn": "^64.0.0",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.3",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.60.0",
+    "vitest": "^4.1.7"
+  }
+}
